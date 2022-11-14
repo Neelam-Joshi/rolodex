@@ -72,9 +72,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ),
             child: Column(
               children: [
-                const SizedBox(height:47),
+                const SizedBox(height:30),
                 Padding(
-                    padding:const EdgeInsets.only(left:47,right:45),
+                    padding:const EdgeInsets.only(left:27,right:25,top:11),
                     child:Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -112,23 +112,25 @@ class _ExploreScreenState extends State<ExploreScreen> {
             )
         ),
       ),
-      body: ListView(
-       // crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-              padding:const EdgeInsets.only(left:15),
-              child: getText("Categories", 14, FontWeight.w500, kBlackColor, poppinsRegular)),
-          const SizedBox(height:2),
-          CategoriesUI(),
-          const SizedBox(height:15),
-          articleUI(),
-          const SizedBox(height:19),
-          newstypeUI(),
-          newsListUI()
+      body: Padding(
+        padding:const EdgeInsets.only(left:12,right:12),
+        child: ListView(
+         // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height:10),
+            getText("Categories", 14, FontWeight.w500, kBlackColor, poppinsRegular),
+            const SizedBox(height:10),
+            CategoriesUI(),
+            const SizedBox(height:15),
+            articleUI(),
+            const SizedBox(height:10),
+            newstypeUI(),
+            newsListUI()
 
-        ],
+          ],
+        ),
       ),
-      
+
     );
   }
 
@@ -136,12 +138,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return
       Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(left: 23,top:18,bottom: 25),
-      height:133,
+      padding: const EdgeInsets.only(left: 14,top:10,bottom:10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: const Color(0xffffffff),
-        
+
       ),
       child:Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -151,19 +152,20 @@ class _ExploreScreenState extends State<ExploreScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               getText("Bucharest, Romania", 12, FontWeight.w400, kBlackColor, poppinsRegular),
-               const SizedBox(height:10),
-               getText("20 June 2022",14, FontWeight.w400, Color(0xff828282), poppinsRegular),
-               const SizedBox(height:10),
-               Row(
-                 children: [
-                   Image.asset("assets/images/sun.png",width: 33.33,height: 33.33,),
-                   const SizedBox(width: 5,),
-                   getText("22°",26, FontWeight.w400, Color(0xff1E2022), poppinsRegular),
-                 ],
-               )
+              getText("Bucharest, Romania", 12, FontWeight.w400, kBlackColor, poppinsRegular),
+
+              getText("20 June 2022",14, FontWeight.w400, Color(0xff828282), poppinsRegular),
+              const SizedBox(height:10),
+              Row(
+                children: [
+                  Image.asset("assets/images/sun.png",width: 33.33,height: 33.33,),
+                  const SizedBox(width: 5,),
+                  getText("22°",26, FontWeight.w400, Color(0xff1E2022), poppinsRegular),
+                ],
+              )
             ],
           )
+
         ],
       )
     );
@@ -175,7 +177,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           physics: ScrollPhysics(),
-          padding:const EdgeInsets.only(left:6.57,right:6.54),
           itemCount: categories.length,
           separatorBuilder: (context,i){
             return const SizedBox(width:7.74);
@@ -217,28 +218,27 @@ class _ExploreScreenState extends State<ExploreScreen> {
   Widget articleUI() {
     return
       Container(
-      height:230,
+      height:180,
       child:ListView.separated(
         shrinkWrap: true,
         physics: ScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: articleList.length,
         separatorBuilder: (context,i){
-          return SizedBox(width:20);
+          return SizedBox(width:15);
         },
           itemBuilder: (context,index){
             var artItem = articleList[index];
           return Stack(
             children: [
               Container(
-                width:266,height:225,
+               height:180,
                 child: Image.asset(artItem['image']),
               ),
               Positioned(
-                top:151,left: 5,bottom: 10,
+                top:90,left:5,bottom:5,right:5,
                   child: Container(
-                    padding: const EdgeInsets.only(left:12.44,top: 7),
-                    width:255,height:70,
+                    padding: const EdgeInsets.only(left:12.44,top: 7,right:5),
                     decoration: BoxDecoration(
                       color:  Color(0xff616951),
                       borderRadius: BorderRadius.circular(6)
@@ -246,12 +246,20 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        getText(artItem["title"], 12, FontWeight.w400, kWhiteColor, poppinsRegular),
+                        Text(artItem["title"],
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: poppinsRegular,
+                            color:kWhiteColor,
+                            overflow: TextOverflow.ellipsis
+                          ),
+                          maxLines: 2,
+                        ),
                         const SizedBox(height: 5,),
                         getText("Read More..", 14, FontWeight.w400, kBlackColor, poppinsRegular)
                       ],
                     ),
-
                   )
               )
             ],
@@ -264,7 +272,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return  Container(
         height:20,
         child:ListView.separated(
-          padding: const EdgeInsets.only(left:20,right:20),
+          padding: const EdgeInsets.only(left:8,right:20),
             shrinkWrap: true,
             physics: ScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -292,15 +300,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 
   Widget newsListUI() {
-    return  Expanded(
-
-        child:ListView.separated(
-            padding: const EdgeInsets.only(top:20,bottom:20),
+    return  Container(
+        child:
+        ListView.separated(
+            padding: const EdgeInsets.only(top:10,bottom:20),
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: newsList.length,
             separatorBuilder: (context,i){
-              return SizedBox(width:12);
+              return SizedBox(height:12);
             },
             itemBuilder: (context,index){
               var newsItem = newsList[index];
@@ -312,13 +320,20 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14),
                       color: const Color(0xffffffff),
-
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 15,
+                          offset: Offset(0,4),
+                          spreadRadius: 0,
+                          color:Colors.black12
+                        )
+                      ]
                     ),
                     child:Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Image.asset(newsItem['image'],width:88,height:81),
-                        SizedBox(width:20),
+                        SizedBox(width:10),
                         Flexible(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

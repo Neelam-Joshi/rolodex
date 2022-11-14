@@ -12,23 +12,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-   TextEditingController searchController = TextEditingController();
-
-    List usersList = [
-
-    ];
-    int selectIndex = 0;
+  TextEditingController searchController = TextEditingController();
+  List usersList = [];
+  int selectIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.grey,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading:false,
-        toolbarHeight: 240,
+        toolbarHeight: 200,
         flexibleSpace: Container(
+            padding:const EdgeInsets.only(left:27,right:25,top:11),
             decoration: BoxDecoration(
                 color:Color(0xff48B3E0),
                 borderRadius: BorderRadius.only(
@@ -36,12 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   bottomRight: Radius.circular(30),
                 )
             ),
-          child: Column(
-            children: [
-                  const SizedBox(height:47),
-                  Padding(
-                       padding:const EdgeInsets.only(left:47,right:45),
-                     child:Row(
+            child: Column(
+               children: [
+                  const SizedBox(height:30),
+                  Row(
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                        children: [
                          Container(
@@ -67,25 +61,16 @@ class _HomeScreenState extends State<HomeScreen> {
                          ),
                          Image.asset("assets/images/bell.png",width:28,height:28.81)
                        ],
-                     )
-                   ),
-                  const SizedBox(height:47),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 44,right:44.05),
-                    child: _buildTextField("Search..", TextInputType.text, searchController,"assets/images/search.png"),
-                  ),
+                     ),
+                  const SizedBox(height:30),
+                  _buildTextField("Search..", TextInputType.text, searchController,"assets/images/search.png"),
 
-
-
-
-            ],
-          )
-        ),
-      ),
+            ])
+        )),
       body: Padding(
         padding: const EdgeInsets.only(left:17,right:21),
         child: ListView.separated(
-          padding: const EdgeInsets.only(top:46,bottom:20),
+          padding: const EdgeInsets.only(top:20,bottom:20),
           itemCount: 2,
             separatorBuilder:(context, i){
               return SizedBox(height:16);
@@ -103,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   Widget _buildTextField(hinttext,TextInputType keyboardtype, TextEditingController controller,imageUrl ){
     return Container(
+      alignment: Alignment.center,
       //padding: const EdgeInsets.only(left:12),
         height:36.99,
         decoration:BoxDecoration(
@@ -124,9 +110,10 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: controller,
           keyboardType: keyboardtype,
           decoration: InputDecoration(
-              contentPadding: const EdgeInsets.only(top: 3),
+             contentPadding: const EdgeInsets.only(top:0,bottom:5),
               border: InputBorder.none,
               hintText: hinttext,
+
               hintStyle:  const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -151,14 +138,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return SizedBox(
        height: 290,
         child:Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(image,width:390,height:167,),
+            Expanded(child: Image.asset(image,width:390,height:167,)),
             SizedBox(height:6),
-            Expanded(
-              child: Container(
-               // padding: const EdgeInsets.only(left:25,right: 25),
+            Container(
+                padding: const EdgeInsets.only(left:16,right: 16,bottom: 16,top:6),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
                   color:kWhiteColor,
@@ -178,25 +163,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             getText(title, 20, FontWeight.w400, kBlackColor, poppinsRegular ),
-                            const SizedBox(height:6),
                             getText(time, 20, FontWeight.w400, kBlackColor, poppinsRegular )
-
-                          ],
-                        ),
-                        Spacer(),
+                          ]),
+                        const Spacer(),
                         Padding(
                           padding: const EdgeInsets.only(top:15),
                           child: Image.asset("assets/images/heart.png",width:28,height:28) ,
                         )
-
-
-                      ],
-                    ),
-                    const SizedBox(height:13),
-                    Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      ]),
+                     const SizedBox(height:13),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildButton("Call",(){
                           selectIndex=0;
@@ -221,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 )
               )
-            )
+
           ],
         )
     );
@@ -232,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: ontap,
       child: Container(
         alignment: Alignment.center,
-        height:34,width:100,
+        height:34,width:90,
         decoration: BoxDecoration(
           color:selectIndex==index?Color(0xff00AAE4):Colors.white,
           borderRadius: BorderRadius.circular(14),

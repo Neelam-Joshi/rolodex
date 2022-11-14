@@ -23,95 +23,113 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
+    var devicesize = MediaQuery.of(context).size;
+    var width = devicesize.width;
+    var height = devicesize.height;
     return Scaffold(
         body: PageView.builder(
             controller: controller,
             itemCount: introList.length,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        Container(
-                            padding: const EdgeInsets.only(left: 41, right: 45),
-                            child: Image.asset(
-                              'assets/images/logo.png',
-                              fit: BoxFit.cover,
-                            )),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 175),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Image.asset(
-                              introList[index].img.toString(),
-                              fit: BoxFit.cover,
-                            ),
+              return Container(
+                width: width,height:height,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 20,),
+                    Image.asset('assets/images/logo.png',width: 200,height:140,
+
+                    ),
+                    Container(
+                      width: 200,height:140,
+                      child: Image.asset(
+                        introList[index].img.toString(),width: 200,height:140,
+                      ),
+                    ),
+                    // Expanded(
+                    //   child: Stack(
+                    //     children: [
+                    //       Container(
+                    //           width: 200,height:140,
+                    //           child: Image.asset(
+                    //             'assets/images/logo.png',width: 200,height:140,
+                    //             fit: BoxFit.cover,
+                    //           )),
+                    //       Padding(
+                    //         padding: const EdgeInsets.only(top: 175),
+                    //         child: Align(
+                    //           alignment: Alignment.center,
+                    //           child: Image.asset(
+                    //             introList[index].img.toString(),
+                    //             fit: BoxFit.cover,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    Container(
+                      height: height/2,
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Color(0xff317BEF),
+                                Color(0xff00317BEF)]),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(33),
+                              topRight: Radius.circular(33))),
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 46.38, right: 38),
+                            child: getText(introList[index].title.toString(), 20,
+                                FontWeight.w600, kBlackColor, poppinsSemiBold),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 7, left: 37.33, right: 24),
+                            child: getText(introList[index].subTitle.toString(),
+                                20, FontWeight.w400, kBlackColor, poppinsRegular),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 22, right: 24),
+                            child: customBtn('Next', () {
+                              index==2?
+                                  Navigator.push(context,
+                                  MaterialPageRoute(
+                                    builder: (context)=>
+                                        ProfileScreen()
+                                  )
+                                  ):
+                              controller.nextPage(
+                                duration: const Duration(microseconds: 100),
+                                curve: Curves.easeInOut,
+                              );
+                            }),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          index == 0
+                              ? dots1()
+                              : index == 1
+                                  ? dots2()
+                                  : dots3(),
+                          const SizedBox(
+                            height: 30,
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 400,
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Color(0xff317BEF),
-                              Color(0xff00317BEF)]),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(33),
-                            topRight: Radius.circular(33))),
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 46.38, right: 38),
-                          child: getText(introList[index].title.toString(), 20,
-                              FontWeight.w600, kBlackColor, poppinsSemiBold),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 7, left: 37.33, right: 24),
-                          child: getText(introList[index].subTitle.toString(),
-                              20, FontWeight.w400, kBlackColor, poppinsRegular),
-                        ),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 22, right: 24),
-                          child: customBtn('Next', () {
-                            index==2?
-                                Navigator.push(context,
-                                MaterialPageRoute(
-                                  builder: (context)=>
-                                      ProfileScreen()
-                                )
-                                ):
-                            controller.nextPage(
-                              duration: const Duration(microseconds: 100),
-                              curve: Curves.easeInOut,
-                            );
-                          }),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        index == 0
-                            ? dots1()
-                            : index == 1
-                                ? dots2()
-                                : dots3(),
-                        const SizedBox(
-                          height: 30,
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               );
             }));
   }

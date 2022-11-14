@@ -6,7 +6,7 @@ Widget customBtn(String title, Function() onTap) {
   return InkWell(
     onTap: onTap,
     child: Container(
-      height: 57.22,
+      height: 47,
       width: double.infinity,
       alignment: Alignment.center,
       decoration: BoxDecoration(

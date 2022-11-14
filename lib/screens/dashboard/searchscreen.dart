@@ -20,6 +20,9 @@ class _SearchScreenState extends State<SearchScreen> {
   int selectIndex = 0;
   @override
   Widget build(BuildContext context) {
+    var deviceSize = MediaQuery.of(context).size;
+    var width= deviceSize.width;
+    var height = deviceSize.height;
     return Scaffold(
       // backgroundColor: Colors.grey,
       appBar: AppBar(
@@ -28,7 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
         automaticallyImplyLeading:false,
         toolbarHeight: 280,
         flexibleSpace: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color:Color(0xff48B3E0),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),
@@ -36,11 +39,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 )
             ),
             child: Column(
+             // mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height:47),
+                const SizedBox(height:30),
                 Padding(
-                    padding:const EdgeInsets.only(left:47,right:45),
+                    padding:const EdgeInsets.only(left:27,right:25,top:11),
                     child:Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -71,19 +75,19 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 const SizedBox(height:10),
                 Padding(
-                  padding: const EdgeInsets.only(left: 44,right:44.05),
+                  padding:const EdgeInsets.only(left:29),
                   child: getText("Hello,\n Search a product or service",
                     16,FontWeight.w700,kWhiteColor,poppinsRegular
                   ),
                 ),
                 const SizedBox(height:10),
                 Padding(
-                  padding: const EdgeInsets.only(left: 44,right:44.05),
+                  padding:const EdgeInsets.only(left:27,right:25),
                   child: _buildTextField("Search..", TextInputType.text, searchController,"assets/images/search.png"),
                 ),
                 const SizedBox(height:6.85),
                 Padding(
-                  padding: const EdgeInsets.only(left: 44,right:44.05),
+                  padding:const EdgeInsets.only(left:27,right:25),
                   child: Row(
                     children: [
                       getText("Filters", 14, FontWeight.w400, kBlackColor, poppinsRegular),
@@ -93,16 +97,37 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 const SizedBox(height:5),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10,),
-                  child:  Expanded(
-                    child:
-                    Row(
-                      children: [
-                        InkWell(
+                      padding:const EdgeInsets.only(left:27,right:25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                              onTap: (){},
+                              child: Container(
+                                padding: const EdgeInsets.only(left:14,right:14),
+                                alignment: Alignment.center,
+                                height:30,
+                                decoration: BoxDecoration(
+                                    color:Colors.white,
+                                    borderRadius: BorderRadius.circular(6),
+                                    boxShadow: const[
+                                      BoxShadow(
+                                          blurRadius: 4,
+                                          offset: Offset(0,4),
+                                          color: Colors.black12
+                                      )
+                                    ]
+                                ),
+                                child: getText("Near me", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                              ),
+                            ),
+                          // const SizedBox(width:9),
+                          InkWell(
                             onTap: (){},
                             child: Container(
+                              padding: const EdgeInsets.only(left:10,right:10),
                               alignment: Alignment.center,
-                              height:30,width:78,
+                              height:30,
                               decoration: BoxDecoration(
                                   color:Colors.white,
                                   borderRadius: BorderRadius.circular(6),
@@ -114,73 +139,56 @@ class _SearchScreenState extends State<SearchScreen> {
                                     )
                                   ]
                               ),
-                              child: getText("Near me", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                              child: getText("City", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
                             ),
                           ),
-                        const SizedBox(width:9),
-                        InkWell(
-                          onTap: (){},
-                          child: Container(
-                            alignment: Alignment.center,
-                            height:30,width:78,
-                            decoration: BoxDecoration(
-                                color:Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                                boxShadow: const[
-                                  BoxShadow(
-                                      blurRadius: 4,
-                                      offset: Offset(0,4),
-                                      color: Colors.black12
-                                  )
-                                ]
+                          // const SizedBox(width:9),
+                          InkWell(
+                            onTap: (){},
+                            child: Container(
+                              padding: const EdgeInsets.only(left:6.5,right:6.5),
+                              alignment: Alignment.center,
+                              height:30,
+                              decoration: BoxDecoration(
+                                  color:Colors.white,
+                                  borderRadius: BorderRadius.circular(6),
+                                  boxShadow: const[
+                                    BoxShadow(
+                                        blurRadius: 4,
+                                        offset: Offset(0,4),
+                                        color: Colors.black12
+                                    )
+                                  ]
+                              ),
+                              child: getText("Postal Code", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
                             ),
-                            child: getText("City", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
                           ),
-                        ),
-                        const SizedBox(width:9),
-                        InkWell(
-                          onTap: (){},
-                          child: Container(
-                            alignment: Alignment.center,
-                            height:30,width:78,
-                            decoration: BoxDecoration(
-                                color:Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                                boxShadow: const[
-                                  BoxShadow(
-                                      blurRadius: 4,
-                                      offset: Offset(0,4),
-                                      color: Colors.black12
-                                  )
-                                ]
+                          // const SizedBox(width:9),
+                          InkWell(
+                            onTap: (){},
+                            child: Container(
+                              padding: const EdgeInsets.only(left:14.5,right:14.5),
+                              alignment: Alignment.center,
+                              height:30,
+                              decoration: BoxDecoration(
+                                  color:Colors.white,
+                                  borderRadius: BorderRadius.circular(6),
+                                  boxShadow: const[
+                                    BoxShadow(
+                                        blurRadius: 4,
+                                        offset: Offset(0,4),
+                                        color: Colors.black12
+                                    )
+                                  ]
+                              ),
+                              child: getText("Category", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
                             ),
-                            child: getText("Postal Code", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
                           ),
-                        ),
-                        const SizedBox(width:9),
-                        InkWell(
-                          onTap: (){},
-                          child: Container(
-                            alignment: Alignment.center,
-                            height:30,width:78,
-                            decoration: BoxDecoration(
-                                color:Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                                boxShadow: const[
-                                  BoxShadow(
-                                      blurRadius: 4,
-                                      offset: Offset(0,4),
-                                      color: Colors.black12
-                                  )
-                                ]
-                            ),
-                            child: getText("Category", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                )
+
+
 
               ],
             )
@@ -189,7 +197,7 @@ class _SearchScreenState extends State<SearchScreen> {
       body: Padding(
         padding: const EdgeInsets.only(left:17,right:21),
         child: ListView.separated(
-          padding: const EdgeInsets.only(top:46,bottom:20),
+          padding: const EdgeInsets.only(top:10,bottom:20),
           itemCount: 2,
           separatorBuilder:(context, i){
             return SizedBox(height:16);
@@ -198,10 +206,9 @@ class _SearchScreenState extends State<SearchScreen> {
             return _buildCard(
               "assets/images/card_one.png",
               "Business Name",
-              "07:00 AM - 10:00 PM",
-
+              "07:00 AM - 10:00 PM",width
             );
-          },  ),
+          }),
       ),
     );
   }
@@ -251,18 +258,15 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget _buildCard(image,title,time){
-    return SizedBox(
-        height: 290,
-        child:Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-
+  Widget _buildCard(image,title,time,double width){
+    return Column(
           children: [
-            Image.asset(image,width:390,height:167,),
-            SizedBox(height:6),
-            Expanded(
-                child: Container(
-                  padding: const EdgeInsets.only(left:5,right: 10),
+            Container(
+                width:width-38,height:167,
+                child: Image.asset(image,width:width-38,height:167,fit: BoxFit.fill,)),
+            const SizedBox(height:6),
+            Container(
+                padding: const EdgeInsets.only(left:16,right: 16,bottom: 16,top:6),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14),
                       color:kWhiteColor,
@@ -324,10 +328,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       ],
                     )
                 )
-            )
-          ],
-        )
-    );
+          ]);
+
   }
 
   Widget _buildButton(text,Function() ontap,index) {
@@ -336,7 +338,7 @@ class _SearchScreenState extends State<SearchScreen> {
       onTap: ontap,
       child: Container(
         alignment: Alignment.center,
-        height:34,width:100,
+        height:34,width:90,
         decoration: BoxDecoration(
             color:selectIndex==index?Color(0xff00AAE4):Colors.white,
             borderRadius: BorderRadius.circular(14),
