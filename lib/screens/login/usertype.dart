@@ -19,23 +19,23 @@ class _UserTypeState extends State<UserType> {
             children: [
               const SizedBox(height:10),
               Image.asset("assets/images/logo.png",width: 200,height:140, fit: BoxFit.cover,),
+              const SizedBox(height:20),
               Expanded(
                 child: Image.asset("assets/images/rolodexuser.png",width:230,height:140,
-
                 ),
               ),
               const SizedBox(height:13.27),
               Container(
                   padding: const EdgeInsets.only(left:54,right:53.33, top:70),
-                  height:350,
-                  decoration: const BoxDecoration(
+                  height:MediaQuery.of(context).size.height/2,
+                  decoration:  BoxDecoration(
                     gradient:
                     LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       colors: [
-                        Color(0xff25AAE1),
-                        Colors.white
+                        const  Color(0xff48B3E0).withOpacity(0.80),
+                        const   Color(0xff48B3E0).withOpacity(0.20)
                       ]
                     ),
                     borderRadius: BorderRadius.only(
@@ -46,11 +46,23 @@ class _UserTypeState extends State<UserType> {
                       children: [
                        const SizedBox(height:50),
                        _buildButton("As A Business",40,14, kWhiteColor,kBlackColor,false,
-                          (){},
+                          (){
+                            Navigator.push(context,
+                                MaterialPageRoute(
+                                builder: (context)=>
+                                LoginInScreen()
+                            ));
+                          },
                        ),
                         const SizedBox(height:27),
                         _buildButton("As A Visitor ",40,14, kWhiteColor,kBlackColor,false,
-                              (){},
+                              (){
+                                Navigator.push(context,
+                                    MaterialPageRoute(
+                                    builder: (context)=>
+                                    LoginInScreen()
+                                ));
+                              },
                         ),
                         const SizedBox(height:27),
                         _buildButton("Next",40,14, Color(0xff25AAE1),kWhiteColor,false,

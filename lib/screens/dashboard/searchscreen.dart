@@ -15,6 +15,17 @@ class _SearchScreenState extends State<SearchScreen> {
   TextEditingController searchController = TextEditingController();
 
   List usersList = [
+    {
+      "image":"assets/images/myrolodex-One.png",
+      "name": "Business Name",
+      "time":"07:00 AM - 10:00 PM"
+
+    },
+    {
+      "image":"assets/images/search_page.png",
+      "name": "Business Name",
+      "time":"07:00 AM - 10:00 PM"
+    }
 
   ];
   int selectIndex = 0;
@@ -29,8 +40,9 @@ class _SearchScreenState extends State<SearchScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading:false,
-        toolbarHeight: 280,
+        toolbarHeight: MediaQuery.of(context).size.height*0.26,
         flexibleSpace: Container(
+            padding:const EdgeInsets.only(left:27,right:25,top:11,),
             decoration: const BoxDecoration(
                 color:Color(0xff48B3E0),
                 borderRadius: BorderRadius.only(
@@ -43,170 +55,143 @@ class _SearchScreenState extends State<SearchScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height:30),
-                Padding(
-                    padding:const EdgeInsets.only(left:27,right:25,top:11),
-                    child:Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          width:49,height:49,
-                          decoration:BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                  begin: Alignment.bottomLeft,
-                                  end: Alignment.topRight,
-                                  colors: [
-                                    Color(0xff25AAE1),
-                                    Color(0xffD6EFF9)
-                                  ]
-                              )
-                          ),
-                          child: Image.asset("assets/images/profile_icon.png",
-                              width:42,height:42
-                          ),
-                        ),
-                        Flexible(
-                            child:getText("Home",30,FontWeight.w700,kWhiteColor,poppinsRegular)
-                        ),
-                        Image.asset("assets/images/bell.png",width:28,height:28.81)
-                      ],
-                    )
-                ),
-                const SizedBox(height:10),
-                Padding(
-                  padding:const EdgeInsets.only(left:29),
-                  child: getText("Hello,\n Search a product or service",
-                    16,FontWeight.w700,kWhiteColor,poppinsRegular
-                  ),
-                ),
-                const SizedBox(height:10),
-                Padding(
-                  padding:const EdgeInsets.only(left:27,right:25),
-                  child: _buildTextField("Search..", TextInputType.text, searchController,"assets/images/search.png"),
-                ),
-                const SizedBox(height:6.85),
-                Padding(
-                  padding:const EdgeInsets.only(left:27,right:25),
-                  child: Row(
-                    children: [
-                      getText("Filters", 14, FontWeight.w400, kBlackColor, poppinsRegular),
-                      const SizedBox(width:5.15),
-                      Image.asset("assets/images/filter.png",width:20,height:20)
-                    ],),
-                ),
-                const SizedBox(height:5),
-                Padding(
-                      padding:const EdgeInsets.only(left:27,right:25),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                              onTap: (){},
-                              child: Container(
-                                padding: const EdgeInsets.only(left:14,right:14),
-                                alignment: Alignment.center,
-                                height:30,
-                                decoration: BoxDecoration(
-                                    color:Colors.white,
-                                    borderRadius: BorderRadius.circular(6),
-                                    boxShadow: const[
-                                      BoxShadow(
-                                          blurRadius: 4,
-                                          offset: Offset(0,4),
-                                          color: Colors.black12
-                                      )
-                                    ]
-                                ),
-                                child: getText("Near me", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
-                              ),
-                            ),
-                          // const SizedBox(width:9),
-                          InkWell(
-                            onTap: (){},
-                            child: Container(
-                              padding: const EdgeInsets.only(left:10,right:10),
-                              alignment: Alignment.center,
-                              height:30,
-                              decoration: BoxDecoration(
-                                  color:Colors.white,
-                                  borderRadius: BorderRadius.circular(6),
-                                  boxShadow: const[
-                                    BoxShadow(
-                                        blurRadius: 4,
-                                        offset: Offset(0,4),
-                                        color: Colors.black12
-                                    )
-                                  ]
-                              ),
-                              child: getText("City", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
-                            ),
-                          ),
-                          // const SizedBox(width:9),
-                          InkWell(
-                            onTap: (){},
-                            child: Container(
-                              padding: const EdgeInsets.only(left:6.5,right:6.5),
-                              alignment: Alignment.center,
-                              height:30,
-                              decoration: BoxDecoration(
-                                  color:Colors.white,
-                                  borderRadius: BorderRadius.circular(6),
-                                  boxShadow: const[
-                                    BoxShadow(
-                                        blurRadius: 4,
-                                        offset: Offset(0,4),
-                                        color: Colors.black12
-                                    )
-                                  ]
-                              ),
-                              child: getText("Postal Code", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
-                            ),
-                          ),
-                          // const SizedBox(width:9),
-                          InkWell(
-                            onTap: (){},
-                            child: Container(
-                              padding: const EdgeInsets.only(left:14.5,right:14.5),
-                              alignment: Alignment.center,
-                              height:30,
-                              decoration: BoxDecoration(
-                                  color:Colors.white,
-                                  borderRadius: BorderRadius.circular(6),
-                                  boxShadow: const[
-                                    BoxShadow(
-                                        blurRadius: 4,
-                                        offset: Offset(0,4),
-                                        color: Colors.black12
-                                    )
-                                  ]
-                              ),
-                              child: getText("Category", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
-                            ),
-                          ),
-                        ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width:49,height:49,
+                      decoration:const BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight,
+                              colors: [
+                                Color(0xff25AAE1),
+                                Color(0xffD6EFF9)
+                              ]
+                          )
+                      ),
+                      child: Image.asset("assets/images/profile_icon.png",
+                          width:42,height:42
                       ),
                     ),
-
-
-
-              ],
-            )
+                    Flexible(
+                        child:getText("Home",30,FontWeight.w700,kWhiteColor,poppinsRegular)
+                    ),
+                    Image.asset("assets/images/bell.png",width:28,height:28.81)
+                  ],
+                ),
+                const SizedBox(height:10),
+                _buildTextField("Search..", TextInputType.text, searchController,"assets/images/search.png"),
+                const SizedBox(height:6.85),
+                Row(
+                  children: [
+                    getText("Filters", 14, FontWeight.w400, kBlackColor, poppinsRegular),
+                    const SizedBox(width:5.15),
+                    Image.asset("assets/images/filter.png",width:20,height:20)
+                  ],),
+                const SizedBox(height:5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                        onTap: (){},
+                        child: Container(
+                          padding: const EdgeInsets.only(left:14,right:14),
+                          alignment: Alignment.center,
+                          height:30,
+                          decoration: BoxDecoration(
+                              color:Colors.white,
+                              borderRadius: BorderRadius.circular(6),
+                              boxShadow: const[
+                                BoxShadow(
+                                    blurRadius: 4,
+                                    offset: Offset(0,4),
+                                    color: Colors.black12
+                                )
+                              ]
+                          ),
+                          child: getText("Near me", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                        ),
+                      ),
+                    InkWell(
+                      onTap: (){},
+                      child: Container(
+                        padding: const EdgeInsets.only(left:10,right:10),
+                        alignment: Alignment.center,
+                        height:30,
+                        decoration: BoxDecoration(
+                            color:Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                            boxShadow: const[
+                              BoxShadow(
+                                  blurRadius: 4,
+                                  offset: Offset(0,4),
+                                  color: Colors.black12
+                              )
+                            ]
+                        ),
+                        child: getText("City", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: (){},
+                      child: Container(
+                        padding: const EdgeInsets.only(left:6.5,right:6.5),
+                        alignment: Alignment.center,
+                        height:30,
+                        decoration: BoxDecoration(
+                            color:Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                            boxShadow: const[
+                              BoxShadow(
+                                  blurRadius: 4,
+                                  offset: Offset(0,4),
+                                  color: Colors.black12
+                              )
+                            ]
+                        ),
+                        child: getText("Postal Code", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: (){},
+                      child: Container(
+                        padding: const EdgeInsets.only(left:14.5,right:14.5),
+                        alignment: Alignment.center,
+                        height:30,
+                        decoration: BoxDecoration(
+                            color:Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                            boxShadow: const[
+                              BoxShadow(
+                                  blurRadius: 4,
+                                  offset: Offset(0,4),
+                                  color: Colors.black12
+                              )
+                            ]
+                        ),
+                        child: getText("Category", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                      ),
+                    ),
+                  ],
+                ),
+              ])
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left:17,right:21),
         child: ListView.separated(
           padding: const EdgeInsets.only(top:10,bottom:20),
-          itemCount: 2,
+          itemCount: usersList.length,
           separatorBuilder:(context, i){
             return SizedBox(height:16);
           },
           itemBuilder: (context,index){
+            var item = usersList[index];
             return _buildCard(
-              "assets/images/card_one.png",
-              "Business Name",
-              "07:00 AM - 10:00 PM",width
+                item,width
             );
           }),
       ),
@@ -258,12 +243,12 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget _buildCard(image,title,time,double width){
+  Widget _buildCard(item,double width){
     return Column(
           children: [
             Container(
                 width:width-38,height:167,
-                child: Image.asset(image,width:width-38,height:167,fit: BoxFit.fill,)),
+                child: Image.asset(item['image'],width:width-38,height:167,fit: BoxFit.fill,)),
             const SizedBox(height:6),
             Container(
                 padding: const EdgeInsets.only(left:16,right: 16,bottom: 16,top:6),
@@ -286,9 +271,9 @@ class _SearchScreenState extends State<SearchScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                getText(title, 20, FontWeight.w400, kBlackColor, poppinsRegular ),
+                                getText(item['name'], 20, FontWeight.w400, kBlackColor, poppinsRegular ),
                                 const SizedBox(height:6),
-                                getText(time, 20, FontWeight.w400, kBlackColor, poppinsRegular )
+                                getText(item['time'], 20, FontWeight.w400, kBlackColor, poppinsRegular )
 
                               ],
                             ),

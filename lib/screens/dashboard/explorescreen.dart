@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rolodex/utils/constants.dart';
 import 'package:rolodex/widget/getText.dart';
 
+import '../insideabout.dart';
+
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -61,7 +63,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading:false,
-        toolbarHeight: 240,
+        toolbarHeight: MediaQuery.of(context).size.height*0.26,
         flexibleSpace: Container(
             decoration: BoxDecoration(
                 color:Color(0xff48B3E0),
@@ -96,14 +98,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               width:42,height:42
                           ),
                         ),
-                        Flexible(
-                            child:getText("Explore",30,FontWeight.w700,kWhiteColor,poppinsRegular)
-                        ),
+                        getText("Explore",30,FontWeight.w700,kWhiteColor,poppinsRegular),
                         Image.asset("assets/images/bell.png",width:28,height:28.81)
                       ],
                     )
                 ),
-                const SizedBox(height:20),
+                const SizedBox(height:10),
                 Padding(
                   padding: const EdgeInsets.only(left: 10,right:10),
                   child:  _buildAppBarUI()
@@ -300,67 +300,74 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 
   Widget newsListUI() {
-    return  Container(
-        child:
-        ListView.separated(
-            padding: const EdgeInsets.only(top:10,bottom:20),
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: newsList.length,
-            separatorBuilder: (context,i){
-              return SizedBox(height:12);
-            },
-            itemBuilder: (context,index){
-              var newsItem = newsList[index];
-              return
-                Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.only(left: 10,top:10,bottom: 10,right:10),
-                    height:101,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(14),
-                      color: const Color(0xffffffff),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 15,
-                          offset: Offset(0,4),
-                          spreadRadius: 0,
-                          color:Colors.black12
-                        )
-                      ]
-                    ),
-                    child:Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset(newsItem['image'],width:88,height:81),
-                        SizedBox(width:10),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(newsItem["title"],
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: poppinsRegular,
-                                  color: kBlackColor,
-                                  overflow: TextOverflow.ellipsis
+    return  InkWell(
+      onTap: (){
+        Navigator.push(context,
+        MaterialPageRoute(builder: (context)=>InsideAboutScreen())
+        );
+      },
+      child: Container(
+          child:
+          ListView.separated(
+              padding: const EdgeInsets.only(top:10,bottom:20),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: newsList.length,
+              separatorBuilder: (context,i){
+                return SizedBox(height:12);
+              },
+              itemBuilder: (context,index){
+                var newsItem = newsList[index];
+                return
+                  Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.only(left: 10,top:10,bottom: 10,right:10),
+                      height:101,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        color: const Color(0xffffffff),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 15,
+                            offset: Offset(0,4),
+                            spreadRadius: 0,
+                            color:Colors.black12
+                          )
+                        ]
+                      ),
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset(newsItem['image'],width:88,height:81),
+                          SizedBox(width:10),
+                          Flexible(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(newsItem["title"],
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: poppinsRegular,
+                                    color: kBlackColor,
+                                    overflow: TextOverflow.ellipsis
+                                  ),
+                                  maxLines: 2,
                                 ),
-                                maxLines: 2,
-                              ),
-                              //getText(newsItem["title"], 12, FontWeight.w400, kBlackColor, poppinsRegular),
-                              const SizedBox(height:10),
-                              getText(newsItem["date"],14, FontWeight.w400, Color(0xff828282), poppinsRegular),
-                              const SizedBox(height:10),
-                            ],
-                          ),
-                        )
-                      ],
-                    )
-                );
-            }
-        )
+                                //getText(newsItem["title"], 12, FontWeight.w400, kBlackColor, poppinsRegular),
+                                const SizedBox(height:10),
+                                getText(newsItem["date"],14, FontWeight.w400, Color(0xff828282), poppinsRegular),
+                                const SizedBox(height:10),
+                              ],
+                            ),
+                          )
+                        ],
+                      )
+                  );
+              }
+          )
+      ),
     );
   }
 }

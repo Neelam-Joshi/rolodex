@@ -11,3 +11,6 @@ const poppinsMedium = "PoppinsMedium";
 const poppinsExtraLight = "PoppinsExtraLight";
 const poppinsSemiBold = "PoppinsSemiBold";
 const poppingsLight = 'PoppinsLight';
+const productSansRegular = "ProductSansRegular";
+const productSansBold = "ProductSansBold";
+const productSansBoldItalic = "ProductSansBoldItalic";

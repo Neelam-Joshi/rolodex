@@ -122,7 +122,7 @@ class _SignInState extends State<SignIn> {
           padding: EdgeInsets.only(left: 0, right: 0),
           width: 48.0, height: 48.0,
           decoration: BoxDecoration(
-              color: Color(0x51317bef),
+              color: Color(0xff317BEF).withOpacity(0.2),
               borderRadius: BorderRadius.circular(8.0),
               // boxShadow: [BoxShadow(color: Colors.grey.shade400, blurRadius: 2.0)]
           ),

@@ -67,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             // ],),
             const SizedBox(height:20),
             Image.asset("assets/images/logo.png",width: 200,height:140,),
-             const Text("Come Roll with me!",
+            const Text("Come Roll with me!",
               style: TextStyle(
                   shadows: <Shadow>[
                     BoxShadow(
@@ -82,20 +82,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: Color(0xff133263)
               ), textAlign: TextAlign.center,
             ),
-             const SizedBox(height:20),
-            Expanded(child:Image.asset("assets/images/profileman.png",width: 210,height:240)),
+            Expanded(child:Image.asset("assets/images/intro_four.png",width: 210,height:240)),
             getText("Create your Profile",24,FontWeight.w400,Color(0xff133263),poppinsMedium),
-            const SizedBox(height:29),
+            const SizedBox(height:10),
             Padding(
               padding: const EdgeInsets.only(left:40,right:34,),
               child: _buildButton("How It Works",40,14, kWhiteColor,kBlackColor,false,
-                  (){},
+                    (){
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context)=>UserType()
+                  ));
+                  setState(() {
+
+                  });
+                },
               ),),
             const SizedBox(height:20),
             Padding(
                 padding: const EdgeInsets.only(left:40,right:34,),
                 child:_buildButton("How Do I Signup",40,14, kWhiteColor,kBlackColor,false,
-                      (){},
+                       (){
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context)=>UserType()
+                          ));
+                          setState(() {
+
+                          });
+                        },
+
                 ),
             ),
             const SizedBox(height:20),
@@ -106,9 +120,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Navigator.push(context, MaterialPageRoute(
                             builder: (context)=>UserType()
                         ));
-                      },),
+                        setState(() {
+
+                        });
+                      },
+                ),
             ),
-            const SizedBox(height:20),
+            const SizedBox(height:80),
           ]),
       )
     );

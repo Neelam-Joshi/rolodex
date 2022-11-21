@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rolodex/utils/constants.dart';
 import '../../widget/getText.dart';
+import '../paymentmethod.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -41,7 +42,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
        // mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height:16),
           Padding(
             padding: const EdgeInsets.only(left:16,right:5),
             child: Row(
@@ -100,7 +100,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ],
             ),
           ),
-          const SizedBox(height:24),
+          const SizedBox(height:10),
           ListView.separated(
                 padding: const EdgeInsets.only(left:16,right:5),
                 shrinkWrap: true,
@@ -111,7 +111,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 itemCount: options.length,
                 itemBuilder: (context, index){
                   var optionItem = options[index];
-                  return ListWidget(index,optionItem,(){});
+                  return ListWidget(index,optionItem,(){
+                    index ==3?
+                        Navigator.push(context,
+                          MaterialPageRoute(
+                            builder: (context)=>PaymentMethodScreen()
+                          )
+                        ):Container();
+                  });
               },
             ),
           const SizedBox(height:24),

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rolodex/screens/businessdetails.dart';
+import 'package:rolodex/screens/feedback.dart';
 import 'package:rolodex/utils/constants.dart';
 
 import '../../widget/getText.dart';
+import '../invoice.dart';
+import '../myads.dart';
 
 class MyAccount extends StatefulWidget {
   const MyAccount({Key? key}) : super(key: key);
@@ -47,13 +51,84 @@ class _MyAccountState extends State<MyAccount> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Flexible(
-                    child: Container(
-                        padding:const EdgeInsets.only(left:19.52,top:20,bottom:20),
-                          width: (width-40)/2,
-                          decoration: BoxDecoration(
-                              color: Color(0xffffffff),
-                              borderRadius: BorderRadius.circular(24.77),
-                              boxShadow:const[
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder:
+                                (context)=>const MyAdsScreen()  ));
+                        setState(() {
+
+                        });
+                      },
+                      child: Container(
+                          padding:const EdgeInsets.only(left:19.52,top:20,bottom:20),
+                            width: (width-40)/2,
+                            decoration: BoxDecoration(
+                                color: Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(24.77),
+                                boxShadow:const[
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  spreadRadius: 0,
+                                  blurRadius:4,
+                                  offset: Offset(0, 4),
+                                )
+                              ]
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:const EdgeInsets.only(top:2),
+                                  child: Container(
+
+                                    width: 34.08,height:34.08,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      // color:Colors.pink.shade50,
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Color(0xffFFBF1A).withOpacity(0.15),
+                                          Color(0xffFF4080).withOpacity(0.15)
+                                        ]
+                                      )
+                                    ),
+                                    child: Image.asset("assets/images/myad.png",
+                                        width:16.43,height:17.4
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 8.16,),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    getText("55", 13, FontWeight.w600, kBlackColor, poppinsRegular),
+                                    getText("My Ads", 13, FontWeight.w600, Color(0xff9098A3), poppinsRegular)
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                    ),
+                  ),
+                  Flexible(
+                    child:InkWell(
+                      onTap: (){
+                          Navigator.push(context,
+                          MaterialPageRoute(builder:
+                          (context)=>FeedBack()  ));
+                          },
+                      child: Container(
+                        padding:const EdgeInsets.only(left:19.52,top:20,bottom: 20),
+                        width: (width-40)/2,
+                        decoration: BoxDecoration(
+                            color:kWhiteColor,
+                            borderRadius: BorderRadius.circular(24.77),
+                            boxShadow:const[
                               BoxShadow(
                                 color: Colors.black12,
                                 spreadRadius: 0,
@@ -61,70 +136,12 @@ class _MyAccountState extends State<MyAccount> {
                                 offset: Offset(0, 4),
                               )
                             ]
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:const EdgeInsets.only(top:2),
-                                child: Container(
-
-                                  width: 34.08,height:34.08,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    // color:Colors.pink.shade50,
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Color(0xffFFBF1A).withOpacity(0.15),
-                                        Color(0xffFF4080).withOpacity(0.15)
-                                      ]
-                                    )
-                                  ),
-                                  child: Image.asset("assets/images/myad.png",
-                                      width:16.43,height:17.4
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 8.16,),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  getText("55", 13, FontWeight.w600, kBlackColor, poppinsRegular),
-                                  getText("My Ads", 13, FontWeight.w600, Color(0xff9098A3), poppinsRegular)
-                                ],
-                              )
-                            ],
-                          ),
                         ),
-                  ),
-                  Flexible(
-                    child:Container(
-                      padding:const EdgeInsets.only(left:19.52,top:20,bottom: 20),
-                      width: (width-40)/2,
-                      decoration: BoxDecoration(
-                          color:kWhiteColor,
-                          borderRadius: BorderRadius.circular(24.77),
-                          boxShadow:const[
-                            BoxShadow(
-                              color: Colors.black12,
-                              spreadRadius: 0,
-                              blurRadius:4,
-                              offset: Offset(0, 4),
-                            )
-                          ]
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:const EdgeInsets.only(top:0),
-                            child: Container(
-
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
                               width: 34.08,height:34.08,
                               alignment: Alignment.center,
                               // decoration: BoxDecoration(
@@ -143,148 +160,163 @@ class _MyAccountState extends State<MyAccount> {
                                   width:24,height:21,fit: BoxFit.fill,
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 6,),
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                getText("22", 13, FontWeight.w600, kBlackColor, poppinsRegular),
-                                getText("My Ads", 13, FontWeight.w600, Color(0xff9098A3), poppinsRegular)
-                              ],
-                            ),
-                          )
-                        ],
+                            const SizedBox(width: 6,),
+                            Flexible(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  getText("22", 13, FontWeight.w600, kBlackColor, poppinsRegular),
+                                  getText("My feedback", 13, FontWeight.w600, Color(0xff9098A3), poppinsRegular)
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     )
-                  )
-
-
-                ]),
+                  )]),
             const SizedBox(height:15),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Flexible(
-                    child: Container(
-                      padding:const EdgeInsets.only(left:19.52,top:20,bottom: 20),
-                      width: (width-40)/2,
-                      decoration: BoxDecoration(
-                          color:kWhiteColor,
-                          borderRadius: BorderRadius.circular(24.77),
-                          boxShadow:const[
-                            BoxShadow(
-                              color: Colors.black12,
-                              spreadRadius: 0,
-                              blurRadius:4,
-                              offset: Offset(0, 4),
-                            )
-                          ]
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:const EdgeInsets.only(top:2),
-                            child: Container(
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder:(context)=>
+                                InvoiceScreen()
+                            ));
+                      },
+                      child: Container(
+                        padding:const EdgeInsets.only(left:19.52,top:20,bottom: 20),
+                        width: (width-40)/2,
+                        decoration: BoxDecoration(
+                            color:kWhiteColor,
+                            borderRadius: BorderRadius.circular(24.77),
+                            boxShadow:const[
+                              BoxShadow(
+                                color: Colors.black12,
+                                spreadRadius: 0,
+                                blurRadius:4,
+                                offset: Offset(0, 4),
+                              )
+                            ]
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:const EdgeInsets.only(top:2),
+                              child: Container(
 
-                              width: 34.08,height:34.08,
-                              alignment: Alignment.center,
-                              decoration:  BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  // color: Color(0xff3177FF).withOpacity(0.8),
-                                  gradient: RadialGradient(
-                                      colors: [
-                                        Color(0xff2FEA9B).withOpacity(0.15),
-                                        Color(0xff7FDD53).withOpacity(0.15)
-                                      ]
-                                  )
-                                // gradient: LinearGradient(
-                                //   begin: Alignment.topCenter,
-                                //   end: Alignment.bottomCenter,
-                                //   colors: [
-                                //     Colors.pinkAccent,
-                                //     Color(0xffFF4080)
-                                //   ]
-                                // )
-                              ),
-                              child: Image.asset("assets/images/check_icon.png",
-                                  width:16.43,height:17.4
+                                width: 34.08,height:34.08,
+                                alignment: Alignment.center,
+                                decoration:  BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    // color: Color(0xff3177FF).withOpacity(0.8),
+                                    gradient: RadialGradient(
+                                        colors: [
+                                          Color(0xff2FEA9B).withOpacity(0.15),
+                                          Color(0xff7FDD53).withOpacity(0.15)
+                                        ]
+                                    )
+                                  // gradient: LinearGradient(
+                                  //   begin: Alignment.topCenter,
+                                  //   end: Alignment.bottomCenter,
+                                  //   colors: [
+                                  //     Colors.pinkAccent,
+                                  //     Color(0xffFF4080)
+                                  //   ]
+                                  // )
+                                ),
+                                child: Image.asset("assets/images/check_icon.png",
+                                    width:16.43,height:17.4
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 8.16,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              getText("1235.22", 13, FontWeight.w600, kBlackColor, poppinsRegular),
-                              getText("My invoice", 13, FontWeight.w600, Color(0xff9098A3), poppinsRegular)
-                            ],
-                          )
-                        ],
+                            const SizedBox(width: 8.16,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                getText("1235.22", 13, FontWeight.w600, kBlackColor, poppinsRegular),
+                                getText("My invoice", 13, FontWeight.w600, Color(0xff9098A3), poppinsRegular)
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   Flexible(
-                    child: Container(
-                      padding:const EdgeInsets.only(left:19.52,top:20,bottom: 20),
-                      width:(width-40)/2,
-                      decoration: BoxDecoration(
-                          color: kWhiteColor,
-                          borderRadius: BorderRadius.circular(24.77),
-                          boxShadow:const[
-                            BoxShadow(
-                              color: Colors.black12,
-                              spreadRadius: 0,
-                              blurRadius:4,
-                              offset: Offset(0, 4),
-                            )
-                          ]
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:const EdgeInsets.only(top:0),
-                            child: Container(
-                              width: 34.08,height:34.08,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder:(context)=>
+                            BusinessDetails()
+                            ));
+                        setState(() {
 
-                                  gradient: RadialGradient(
-                                      center: Alignment(-8, -6),
-                                      radius: 0.2,
-                                      colors: [
-                                        Color(0xff25AAE1).withOpacity(0.7),
-                                        Color(0xff3177FF).withOpacity(0.3)
-                                      ]
-                                  )
-                              ),
-                              child: Image.asset("assets/images/bottombar_home.png",
-                                  width:16.43,height:17.4,color:kBlackColor
+                        });
+                      },
+                      child:
+                      Container(
+                        padding:const EdgeInsets.only(left:19.52,top:20,bottom: 20),
+                        width:(width-40)/2,
+                        decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: BorderRadius.circular(24.77),
+                            boxShadow:const[
+                              BoxShadow(
+                                color: Colors.black12,
+                                spreadRadius: 0,
+                                blurRadius:4,
+                                offset: Offset(0, 4),
+                              )
+                            ]
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:const EdgeInsets.only(top:0),
+                              child: Container(
+                                width: 34.08,height:34.08,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+
+                                    gradient: RadialGradient(
+                                        center: Alignment(-8, -6),
+                                        radius: 0.2,
+                                        colors: [
+                                          Color(0xff25AAE1).withOpacity(0.7),
+                                          Color(0xff3177FF).withOpacity(0.3)
+                                        ]
+                                    )
+                                ),
+                                child: Image.asset("assets/images/bottombar_home.png",
+                                    width:16.43,height:17.4,color:kBlackColor
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 6,),
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                getText("Visit", 13, FontWeight.w600, kBlackColor, poppinsRegular),
-                                getText("My Rolodex", 13, FontWeight.w600, Color(0xff9098A3), poppinsRegular)
-                              ],
-                            ),
-                          )
-                        ],
+                            const SizedBox(width: 6,),
+                            Flexible(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  getText("Visit", 13, FontWeight.w600, kBlackColor, poppinsRegular),
+                                  getText("My Rolodex", 13, FontWeight.w600, Color(0xff9098A3), poppinsRegular)
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )
-
-                ],
-              ),
+                ]),
             const SizedBox(height:19.14),
             Padding(
                 padding: const EdgeInsets.only(left:10,right:10),

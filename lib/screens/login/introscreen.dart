@@ -39,65 +39,81 @@ class _IntroScreenState extends State<IntroScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 20,),
-                    Image.asset('assets/images/logo.png',width: 200,height:140,
+                    // Image.asset('assets/images/logo.png',width: 200,height:140,),
+                    // Container(width: 200,height:140,
+                    //   child: Image.asset(introList[index].img.toString(),width: 200,height:140,
+                    //   ),),
+                    Expanded(
+                      child:
+                      Stack(
+                        alignment: Alignment.topLeft,
+                        children: [
+                          Container(
+                              width:200,height:140,
+                              child: Image.asset(
+                                'assets/images/logo.png',height:140,
+                              )),
+                          Positioned(
+                           top:100,left:40,
+                            child:  Container(
+                                height:240,width:151,
+                              child: Image.asset(introList[index].img.toString(),
+                                height:240,width:151,
 
-                    ),
-                    Container(
-                      width: 200,height:140,
-                      child: Image.asset(
-                        introList[index].img.toString(),width: 200,height:140,
+                              ),
+                            ),
+
+                          ),
+                        ],
                       ),
                     ),
-                    // Expanded(
-                    //   child: Stack(
-                    //     children: [
-                    //       Container(
-                    //           width: 200,height:140,
-                    //           child: Image.asset(
-                    //             'assets/images/logo.png',width: 200,height:140,
-                    //             fit: BoxFit.cover,
-                    //           )),
-                    //       Padding(
-                    //         padding: const EdgeInsets.only(top: 175),
-                    //         child: Align(
-                    //           alignment: Alignment.center,
-                    //           child: Image.asset(
-                    //             introList[index].img.toString(),
-                    //             fit: BoxFit.cover,
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
                     Container(
                       height: height/2,
-                      decoration: const BoxDecoration(
+                      decoration:  BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                Color(0xff317BEF),
-                                Color(0xff00317BEF)]),
+                                Color(0xff48B3E0).withOpacity(0.80),
+                                Color(0xff48B3E0).withOpacity(0.20)
+                              ]),
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(33),
                               topRight: Radius.circular(33))),
-                      padding: const EdgeInsets.only(top: 30),
+                      padding: const EdgeInsets.only(top:20),
                       child: Column(
                         children: [
                           Padding(
                             padding:
                                 const EdgeInsets.only(left: 46.38, right: 38),
-                            child: getText(introList[index].title.toString(), 20,
-                                FontWeight.w600, kBlackColor, poppinsSemiBold),
+                            child:Text(introList[index].title.toString(),
+                              style:const TextStyle(
+                                fontFamily: poppinsSemiBold,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: kBlackColor
+                              ),
+                               textAlign: TextAlign.center,
+                            )
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 7, left: 37.33, right: 24),
-                            child: getText(introList[index].subTitle.toString(),
-                                20, FontWeight.w400, kBlackColor, poppinsRegular),
+                          Expanded(
+                            child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 7, left: 20, right: 20),
+                                child: Text(introList[index].subTitle.toString(),
+                                  style:const TextStyle(
+                                      fontFamily: poppinsRegular,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      color: kBlackColor,
+                                    overflow: TextOverflow.ellipsis
+                                  ),
+                                  maxLines:3 ,
+                                  textAlign: TextAlign.center,
+                                )
+                              ),
+
                           ),
-                          const Spacer(),
                           Padding(
                             padding: const EdgeInsets.only(left: 22, right: 24),
                             child: customBtn('Next', () {

@@ -1,87 +1,178 @@
 import 'package:flutter/material.dart';
-
 import '../../../utils/constants.dart';
 import '../../../widget/getText.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchController = TextEditingController();
-  List usersList = [];
+  List usersList = [
+    {
+      "image":"assets/images/card_one.png",
+      "name": "Business Name",
+      "time":"07:00 AM - 10:00 PM"
+
+    },
+    {
+      "image":"assets/images/home_one.png",
+      "name": "Business Name",
+      "time":"07:00 AM - 10:00 PM"
+    }
+
+  ];
   int selectIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading:false,
-        toolbarHeight: 200,
-        flexibleSpace: Container(
-            padding:const EdgeInsets.only(left:27,right:25,top:11),
-            decoration: BoxDecoration(
-                color:Color(0xff48B3E0),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
-                )
-            ),
-            child: Column(
-               children: [
-                  const SizedBox(height:30),
-                  Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       children: [
-                         Container(
-                           alignment: Alignment.center,
-                           width:49,height:49,
-                           decoration:BoxDecoration(
-                             shape: BoxShape.circle,
-                             gradient: LinearGradient(
-                                 begin: Alignment.bottomLeft,
-                                 end: Alignment.topRight,
-                                colors: [
-                                  Color(0xff25AAE1),
-                                  Color(0xffD6EFF9)
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          automaticallyImplyLeading:false,
+          toolbarHeight: MediaQuery.of(context).size.height*0.24,
+          flexibleSpace: Container(
+              padding:const EdgeInsets.only(left:27,right:25,top:11,),
+              decoration: const BoxDecoration(
+                  color:Color(0xff48B3E0),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  )
+              ),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height:30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width:49,height:49,
+                          decoration:const BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    Color(0xff25AAE1),
+                                    Color(0xffD6EFF9)
+                                  ]
+                              )
+                          ),
+                          child: Image.asset("assets/images/profile_icon.png",
+                              width:42,height:42
+                          ),
+                        ),
+                        getText("My Rolodex",30,FontWeight.w700,kWhiteColor,poppinsRegular),
+                        Image.asset("assets/images/bell.png",width:28,height:28.81)
+                      ],
+                    ),
+                    const SizedBox(height:10),
+                    _buildTextField("Search..", TextInputType.text, searchController,"assets/images/search.png"),
+                    const SizedBox(height:10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: (){},
+                          child: Container(
+                            padding: const EdgeInsets.only(left:14,right:14),
+                            alignment: Alignment.center,
+                            height:30,
+                            decoration: BoxDecoration(
+                                color:Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                                boxShadow: const[
+                                  BoxShadow(
+                                      blurRadius: 4,
+                                      offset: Offset(0,4),
+                                      color: Colors.black12
+                                  )
                                 ]
-                             )
-                           ),
-                           child: Image.asset("assets/images/profile_icon.png",
-                             width:42,height:42
-                           ),
-                         ),
-                         Flexible(
-                           child:getText("My Rolodex",30,FontWeight.w700,kWhiteColor,poppinsRegular)
-                         ),
-                         Image.asset("assets/images/bell.png",width:28,height:28.81)
-                       ],
-                     ),
-                  const SizedBox(height:30),
-                  _buildTextField("Search..", TextInputType.text, searchController,"assets/images/search.png"),
-
-            ])
-        )),
-      body: Padding(
+                            ),
+                            child: getText("Near me", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: (){},
+                          child: Container(
+                            padding: const EdgeInsets.only(left:10,right:10),
+                            alignment: Alignment.center,
+                            height:30,
+                            decoration: BoxDecoration(
+                                color:Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                                boxShadow: const[
+                                  BoxShadow(
+                                      blurRadius: 4,
+                                      offset: Offset(0,4),
+                                      color: Colors.black12
+                                  )
+                                ]
+                            ),
+                            child: getText("City", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: (){},
+                          child: Container(
+                            padding: const EdgeInsets.only(left:6.5,right:6.5),
+                            alignment: Alignment.center,
+                            height:30,
+                            decoration: BoxDecoration(
+                                color:Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                                boxShadow: const[
+                                  BoxShadow(
+                                      blurRadius: 4,
+                                      offset: Offset(0,4),
+                                      color: Colors.black12
+                                  )
+                                ]
+                            ),
+                            child: getText("Postal Code", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: (){},
+                          child: Container(
+                            padding: const EdgeInsets.only(left:14.5,right:14.5),
+                            alignment: Alignment.center,
+                            height:30,
+                            decoration: BoxDecoration(
+                                color:Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                                boxShadow: const[
+                                  BoxShadow(
+                                      blurRadius: 4,
+                                      offset: Offset(0,4),
+                                      color: Colors.black12
+                                  )
+                                ]
+                            ),
+                            child: getText("Category", 12, FontWeight.w500, Color(0xff575757), poppinsRegular),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ])
+          ),
+        ),
+      body:
+      Padding(
         padding: const EdgeInsets.only(left:17,right:21),
         child: ListView.separated(
           padding: const EdgeInsets.only(top:20,bottom:20),
-          itemCount: 2,
+          itemCount: usersList.length,
             separatorBuilder:(context, i){
-              return SizedBox(height:16);
+              return const SizedBox(height:16);
             },
             itemBuilder: (context,index){
-            return _buildCard(
-              "assets/images/home_business_name.png",
-              "Business Name",
-               "07:00 AM - 10:00 PM",
-
-            );
+            var item = usersList[index];
+            return _buildCard(item);
             },  ),
       ),
     );
@@ -113,7 +204,6 @@ class _HomeScreenState extends State<HomeScreen> {
              contentPadding: const EdgeInsets.only(top:0,bottom:5),
               border: InputBorder.none,
               hintText: hinttext,
-
               hintStyle:  const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -134,13 +224,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildCard(image,title,time){
+  Widget _buildCard(item){
     return SizedBox(
        height: 290,
         child:Column(
-          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: Image.asset(image,width:390,height:167,)),
+            Expanded(child: Image.asset(item['image'],width:390,height:167,)),
             SizedBox(height:6),
             Container(
                 padding: const EdgeInsets.only(left:16,right: 16,bottom: 16,top:6),
@@ -163,8 +252,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            getText(title, 20, FontWeight.w400, kBlackColor, poppinsRegular ),
-                            getText(time, 20, FontWeight.w400, kBlackColor, poppinsRegular )
+                            getText(item['name'], 20, FontWeight.w400, kBlackColor, poppinsRegular ),
+                            getText(item['time'], 20, FontWeight.w400, kBlackColor, poppinsRegular )
                           ]),
                         const Spacer(),
                         Padding(

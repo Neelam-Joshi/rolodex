@@ -46,6 +46,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
   pin_code_fields: ^7.4.0
+  flutter_rating_bar: ^4.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -94,7 +95,21 @@ flutter:
     - family: PoppinsLight
       fonts:
         - asset: assets/fonts/Poppins-Light.ttf
-    
+
+    - family: ProductSansRegular
+      fonts:
+        - asset: assets/fonts/PRODUCT SANS ITALIC.TTF
+
+    - family: ProductSansBold
+      fonts:
+        - asset: assets/fonts/PRODUCT SANS BOLD.TTF
+
+    - family: ProductSansBoldItalic
+      fonts:
+        - asset: assets/fonts/PRODUCT SANS BOLD ITALIC.TTF
+
+
+
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
